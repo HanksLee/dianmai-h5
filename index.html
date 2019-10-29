@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Expires" content="-1">
+  <meta http-equiv="Cache-Control" content="no-cache">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="format-detection" content="telephone=yes" />
+  <title>交易</title>
+</head>
+<!-- <script src="//cdn.jsdelivr.net/npm/eruda"></script>
+    <script>
+      eruda.init()
+    </script> -->
+<body>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+  <script src="/static/echarts/echarts.min.js"></script>
+  <script>
+    document.addEventListener('plusready', function() {
+      var webview = plus.webview.currentWebview();
+      plus.key.addEventListener('backbutton', function() {
+        webview.canBack(function(e) {
+          if(e.canBack) {
+            webview.back();
+          } else {
+            webview.close(); //hide,quit
+            plus.runtime.quit();
+            document.plusReady(function() {
+              //首页返回键处理
+              //处理逻辑：1秒内，连续两次按返回键，则退出应用；
+              var first = null;
+              plus.key.addEventListener('backbutton', function() {
+                //首次按键，提示‘再按一次退出应用’
+                if (!first) {
+                  first = new Date().getTime();
+                  alert("再按一次退出应用");
+                  setTimeout(function() {
+                    first = null;
+                  }, 1000);
+                } else {
+                  if (new Date().getTime() - first < 1500) {
+                    plus.runtime.quit();
+                  }
+                }
+              }, false);
+            });
+          }
+        })
+      });
+    });
+  </script>
+</body>
+
+</html>
