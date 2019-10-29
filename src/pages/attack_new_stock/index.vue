@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="AttackNewStock">
     Hello World
   </div>
 </template>
@@ -8,7 +8,9 @@
 export default {
   name: 'AttackNewStock',
   data () {
-
+    return {
+      msg: 'test'
+    }
   },
   created () {
 
@@ -18,3 +20,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.AttackNewStock {
+  color: #ffffff
+}
+</style>

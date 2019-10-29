@@ -189,6 +189,13 @@ const router = new Router({
       name: 'notice',
       beforeEnter: judgeLogin,
       component: resolve => require(['@/pages/notice'], resolve)
+    },
+    // 新股
+    {
+      path: '/attack_new_stock',
+      name: 'AttackNewStock',
+      beforeEnter: judgeLogin,
+      component: resolve => require(['@/pages/attack_new_stock'], resolve)
     }
   ],
   //路由跳转返回顶部
