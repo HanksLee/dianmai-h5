@@ -22,7 +22,7 @@
     <!-- new stock -->
     <router-link class="capital-details" to="/attack_new_stock">
         <img src="/static/img/zjmx.png" alt="资金明细">
-        <span>打新股</span>
+        <span>新股申购</span>
         <img src="/static/img/xyb.png" alt="下一页">
     </router-link>
   </div>
