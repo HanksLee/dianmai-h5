@@ -1,14 +1,51 @@
 <template>
-  <div class="AttackNewStock">
+  <div class="attack-new-stock">
     <Header title="新股申购" :goreturn="true"></Header>
-    <div>
-      今日有0只新股申购
+    <div class="top">
+      <span class="text1">2019年10月30日</span>
+      <h2>今日有0只新股申购</h2>
+      <span class="text2">已共计参与64次， 中签4次</span>
     </div>
-    <div>
-      这里是新股相关信息
+    <div class="center">
+      <div>
+        预约打新
+      </div>
+      <div class="apply-time text-center">
+        预约每日申购时间
+      </div>
+      <div class="reserve-info">
+        <van-row class="text-center">
+          <van-col span="11" class="info-left">
+            <div class="font-size1">
+              已预约<span class="text-color-y"> 4 </span>只品种
+            </div>
+            <div class="margin-top1 font-size2">
+              今日申购0只
+            </div>
+          </van-col>
+          <van-col class="vline"></van-col>
+          <van-col span="11" class="info-right">
+            <div class="font-size1">
+              待预约<span class="text-color-y"> 2 </span>只品种
+            </div>
+            <div class="margin-top1 font-size2">
+              <button type="button">一键预约</button>
+            </div>
+          </van-col>
+        </van-row>
+      </div>
     </div>
-    <div>
-      子Item
+    <div class="bottom">
+      <router-link class="link" to="/attack_new_stock">
+        <img src="/static/img/zjmx.png">
+        <span>查询申购记录</span>
+        <img src="/static/img/xyb.png" alt="下一页">
+      </router-link>
+      <router-link class="link" to="/attack_new_stock">
+        <img src="/static/img/zjmx.png">
+        <span>打新指南</span>
+        <img src="/static/img/xyb.png" alt="下一页">
+      </router-link>
     </div>
   </div>
 </template>
@@ -36,7 +73,91 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.AttackNewStock {
-  color: #ffffff
+.attack-new-stock {
+  color: #ffffff;
+  // 可复用的工具类
+  .text-center {
+    text-align: center;
+  }
+  .text-color-y {
+    font-size: 0.4rem;
+    color: rgba(255,225,49,1);
+  }
+  // 专属于特定区域的类
+  .top {
+    margin: 10px 0;
+    padding: 0 10px;
+    span {
+      font-size: 0.25rem;
+    }
+    h2 {
+      margin: 5px 0;
+    }
+  }
+  .center {
+    padding: 10px;
+    margin: 0 10px;
+    border-top: 1px solid rgba(50,50,60,1);
+    .apply-time {
+      margin-bottom: 24px;
+    }
+    .reserve-info {
+      .font-size1 {
+        font-size: 0.32rem;
+      }
+      .font-size2 {
+        font-size: 0.29rem;
+      }
+      .margin-top1 {
+        margin-top: 24px;
+      }
+      .vline {
+        float: left;
+        width: 1px;
+        height: 27px;
+        margin: 0 5px;
+        border-left: 1px solid rgb(251, 251, 253);
+      }
+      .info-right {
+        button {
+          background-color: #4CAF50;
+          border-radius: 4px;
+          border: none;
+          color: white;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+        }
+      }
+    }
+  }
+  .bottom {
+    margin-top: 17px;
+    padding: 0 10px;
+    .link {
+      margin-bottom: 7px;
+      width: 100%;
+      display: inline-block;
+      height: 0.48rem;
+      padding-top: 0.3rem;
+      border-top: 1px solid rgba(50,50,60,1);
+      position: relative;
+      font-size: 0.32rem;
+      color: white;
+      text-indent: 0.56rem;
+      line-height: 0.44rem;
+      img{
+       position: absolute;
+      }
+      img:first-child{
+        left: 0;
+        width: 0.48rem;
+      };
+      img:last-child{
+        right: 0.2rem;
+        width: 0.4rem;
+      }
+    }
+  }
 }
 </style>
