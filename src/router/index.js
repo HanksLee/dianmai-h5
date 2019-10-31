@@ -196,6 +196,12 @@ const router = new Router({
       name: 'AttackNewStock',
       beforeEnter: judgeLogin,
       component: resolve => require(['@/pages/attack_new_stock'], resolve)
+    },
+    {
+      path: '/attack_new_stock/record',
+      name: 'AttackNewStock',
+      beforeEnter: judgeLogin,
+      component: resolve => require(['@/pages/attack_new_stock/record'], resolve)
     }
   ],
   //路由跳转返回顶部

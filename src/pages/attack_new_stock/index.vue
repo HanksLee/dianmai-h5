@@ -36,7 +36,7 @@
       </div>
     </div>
     <div class="bottom">
-      <router-link class="link" to="/attack_new_stock">
+      <router-link class="link" to="/attack_new_stock/record">
         <img src="/static/img/zjmx.png">
         <span>查询申购记录</span>
         <img src="/static/img/xyb.png" alt="下一页">
