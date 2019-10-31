@@ -29,7 +29,7 @@
               待预约<span class="text-color-y"> 2 </span>只品种
             </div>
             <div class="margin-top1 font-size2">
-              <button type="button">一键预约</button>
+              <button type="button" @click="dialogVisible = true">一键预约</button>
             </div>
           </van-col>
         </van-row>
@@ -47,6 +47,9 @@
         <img src="/static/img/xyb.png" alt="下一页">
       </router-link>
     </div>
+    <van-dialog v-model="dialogVisible">
+      <div>Hello World</div>
+    </van-dialog>
   </div>
 </template>
 
@@ -60,7 +63,8 @@ export default {
   },
   data () {
     return {
-      msg: 'test'
+      msg: 'test',
+      dialogVisible: false
     }
   },
   created () {
@@ -85,21 +89,21 @@ export default {
   }
   // 专属于特定区域的类
   .top {
-    margin: 10px 0;
-    padding: 0 10px;
+    margin: 0.3rem 0;
+    padding: 0 0.27rem;
     span {
       font-size: 0.25rem;
     }
     h2 {
-      margin: 5px 0;
+      margin: 0.2rem 0;
     }
   }
   .center {
-    padding: 10px;
-    margin: 0 10px;
+    padding: 0.27rem;
+    // margin: 0 0.3rem;
     border-top: 1px solid rgba(50,50,60,1);
     .apply-time {
-      margin-bottom: 24px;
+      margin-bottom: 0.5rem;
     }
     .reserve-info {
       .font-size1 {
@@ -114,7 +118,7 @@ export default {
       .vline {
         float: left;
         width: 1px;
-        height: 27px;
+        height: 0.6rem;
         margin: 0 5px;
         border-left: 1px solid rgb(251, 251, 253);
       }
@@ -132,10 +136,10 @@ export default {
     }
   }
   .bottom {
-    margin-top: 17px;
-    padding: 0 10px;
+    margin-top: 0.29rem;
+    padding: 0 0.27rem;
     .link {
-      margin-bottom: 7px;
+      margin-bottom: 0.2rem;
       width: 100%;
       display: inline-block;
       height: 0.48rem;
