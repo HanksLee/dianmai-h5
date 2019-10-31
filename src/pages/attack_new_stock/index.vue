@@ -47,27 +47,40 @@
         <img src="/static/img/xyb.png" alt="下一页">
       </router-link>
     </div>
-    <van-dialog class="dialog" v-model="dialogVisible">
+    <van-dialog class="dialog" v-model="dialogVisible"
+      :showCancelButton="true"
+      confirmButtonText="一键预约">
       <div class="title">
         一键预约当前
         <span>2</span>
         只待预约品种
       </div>
-      <div>
+      <div class="content">
         <table border="0" cellpadding="0" cellspacing="0">
           <thead>
-            <th class="left-t">待约新股</th>
-            <th class="center-t">发行价</th>
-            <th class="right-t">申购日期</th>
+            <th>待约新股</th>
+            <th>发行价</th>
+            <th>申购日期</th>
+            <th style="text-align: right;">申购数</th>
           </thead>
-          <tbody>
-            <tr>
-              <td class="left-t">泰和科技</td>
-              <td class="center-t">30.42</td>
-              <td class="right-t">2019-11-19</td>
-            </tr>
-          </tbody>
         </table>
+        <div style="max-height: 1.4rem; overflow: auto;">
+          <table border="0" cellpadding="0" cellspacing="0">
+            <tbody>
+              <tr v-for="n in 4" :key="n">
+                <td>泰和科技</td>
+                <td>30.42</td>
+                <td>2019-11-19</td>
+                <td>
+                  <input type="number" v-model="value" />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="dia-btm">
+        申购总额: 100
       </div>
     </van-dialog>
   </div>
@@ -85,7 +98,8 @@ export default {
     return {
       msg: 'test',
       dialogVisible: false,
-      dialogTitle: '一键预约当前'
+      dialogTitle: '一键预约当前',
+      value: 0
     }
   },
   created () {
@@ -145,6 +159,7 @@ export default {
       }
       .info-right {
         button {
+          padding: 0.05rem 0.1rem;
           background-color: #4CAF50;
           border-radius: 4px;
           border: none;
@@ -202,7 +217,15 @@ export default {
       }
       tbody {
         font-size: 0.26rem;
-        // color: #C0C4CC;
+        text-align: center;
+        td {
+          padding-bottom: 0.14rem;
+        }
+        input {
+          height: 0.24rem;
+          width: 0.4rem;
+          color: #606266;
+        }
       }
       .left-t {
         text-align: left;
@@ -213,6 +236,10 @@ export default {
       .right-t {
         text-align: right;
       }
+    }
+    .dia-btm {
+      margin-top: 0.2rem;
+      font-size: 0.25rem;
     }
   }
 }
