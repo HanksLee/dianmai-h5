@@ -47,8 +47,28 @@
         <img src="/static/img/xyb.png" alt="下一页">
       </router-link>
     </div>
-    <van-dialog v-model="dialogVisible">
-      <div>Hello World</div>
+    <van-dialog class="dialog" v-model="dialogVisible">
+      <div class="title">
+        一键预约当前
+        <span>2</span>
+        只待预约品种
+      </div>
+      <div>
+        <table border="0" cellpadding="0" cellspacing="0">
+          <thead>
+            <th class="left-t">待约新股</th>
+            <th class="center-t">发行价</th>
+            <th class="right-t">申购日期</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="left-t">泰和科技</td>
+              <td class="center-t">30.42</td>
+              <td class="right-t">2019-11-19</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </van-dialog>
   </div>
 </template>
@@ -64,7 +84,8 @@ export default {
   data () {
     return {
       msg: 'test',
-      dialogVisible: false
+      dialogVisible: false,
+      dialogTitle: '一键预约当前'
     }
   },
   created () {
@@ -160,6 +181,37 @@ export default {
       img:last-child{
         right: 0.2rem;
         width: 0.4rem;
+      }
+    }
+  }
+  .dialog {
+    .title {
+      font-size: 0.29rem;
+      margin: -0.02rem 0 0.4rem 0;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      thead {
+        font-size: 0.27rem;
+        color: #969696;
+        // background-color: #909399;
+        th {
+          padding-bottom: 0.14rem;
+        }
+      }
+      tbody {
+        font-size: 0.26rem;
+        // color: #C0C4CC;
+      }
+      .left-t {
+        text-align: left;
+      }
+      .center-t {
+        text-align: center;
+      }
+      .right-t {
+        text-align: right;
       }
     }
   }
