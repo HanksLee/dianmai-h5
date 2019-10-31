@@ -180,7 +180,7 @@
     padding: 0 0.2rem ;
   }
   .personal-assets{
-    height:5.58rem;
+    // height:5.58rem;
     margin: 0.2rem auto 0;
     background:rgba(24,24,32,1);
     h3{
@@ -245,7 +245,7 @@
     }
   }
   .personal-list{
-    margin: 0.8rem auto 1rem;
+    margin: 0.6rem auto 1rem;
     padding: 0 0.24rem;
     ul{
       li{
