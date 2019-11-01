@@ -98,7 +98,6 @@ export default {
     return {
       msg: 'test',
       dialogVisible: false,
-      dialogTitle: '一键预约当前',
       value: 0
     }
   },
