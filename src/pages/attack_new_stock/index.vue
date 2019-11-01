@@ -11,7 +11,7 @@
         预约打新
       </div>
       <div class="apply-time text-center">
-        预约每日申购时间
+        <!-- 预约每日申购时间 -->
       </div>
       <div class="reserve-info">
         <van-row class="text-center">
@@ -71,8 +71,10 @@
                 <td>泰和科技</td>
                 <td>30.42</td>
                 <td>2019-11-19</td>
-                <td>
+                <td class="right-t">
+                  <span>-</span>
                   <input type="number" v-model="value" />
+                  <span>+</span>
                 </td>
               </tr>
             </tbody>
@@ -219,6 +221,9 @@ export default {
         text-align: center;
         td {
           padding-bottom: 0.14rem;
+          span {
+            font-size: 0.4rem;
+          }
         }
         input {
           height: 0.24rem;
