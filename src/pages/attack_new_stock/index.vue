@@ -3,7 +3,7 @@
     <Header title="新股申购" :goreturn="true"></Header>
     <div class="top">
       <span class="text1">2019年10月30日</span>
-      <h2>今日有0只新股申购</h2>
+      <h2>今日有{{ newStockCount.todayNewStock }}只新股申购</h2>
       <span class="text2">已共计参与64次， 中签4次</span>
     </div>
     <div class="center">
@@ -17,16 +17,16 @@
         <van-row class="text-center">
           <van-col span="11" class="info-left">
             <div class="font-size1">
-              已预约<span class="text-color-y"> 4 </span>只品种
+              已预约<span class="text-color-y"> {{ newStockCount.allPurchaseRecord }} </span>只品种
             </div>
             <div class="margin-top1 font-size2">
-              今日申购0只
+              今日申购{{ newStockCount.todayPurchaseRecord }}只
             </div>
           </van-col>
           <van-col class="vline"></van-col>
           <van-col span="11" class="info-right">
             <div class="font-size1">
-              待预约<span class="text-color-y"> 2 </span>只品种
+              待预约<span class="text-color-y"> {{ newStockCount.allNewStock }} </span>只品种
             </div>
             <div class="margin-top1 font-size2">
               <button type="button" @click="dialogVisible = true">一键预约</button>
@@ -52,7 +52,7 @@
       confirmButtonText="一键预约">
       <div class="title">
         一键预约当前
-        <span>2</span>
+        <span>{{ newStockCount.allNewStock }}</span>
         只待预约品种
       </div>
       <div class="content">
@@ -90,6 +90,7 @@
 
 <script>
 import Header from '@/components/Header'
+import { commonRequest } from '@/api/api-new_stock'
 
 export default {
   name: 'AttackNewStock',
@@ -100,14 +101,36 @@ export default {
     return {
       msg: 'test',
       dialogVisible: false,
-      value: 0
+      value: 0,
+      newStockCount: {},
+      preList: []
     }
   },
   created () {
-
+    this.getNewStockCount(1)
+    this.getNewStockCount(2)
   },
   methods: {
-    
+    /**
+     * type 1 count
+     * type 2 list
+     */
+    async getNewStockCount (type) {
+      const res = await commonRequest('new_stock', { type })
+      console.log(res)
+      if (res.code === 200) {
+        switch (type) {
+          case 1: 
+            this.newStockCount = res.data
+            break
+          case 2:
+            this.preList = res.data
+            break  
+        }
+      } else {
+        this.$messageFail(res.msg)
+      }
+    }
   }
 }
 </script>
