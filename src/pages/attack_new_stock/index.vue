@@ -58,19 +58,24 @@
       <div class="content">
         <table border="0" cellpadding="0" cellspacing="0">
           <thead>
-            <th>待约新股</th>
-            <th>发行价</th>
-            <th>申购日期</th>
-            <th style="text-align: right;">申购数</th>
+            <th style="text-align: left">待约新股</th>
+            <th style="text-align: left">发行价</th>
+            <th style="text-align: left">申购日期</th>
+            <th style="text-align: left;">申购数</th>
           </thead>
         </table>
         <div style="max-height: 1.4rem; overflow: auto;">
-          <table border="0" cellpadding="0" cellspacing="0">
+          <table width="100%" border="0" cellpadding="0" cellspacing="0">
             <tbody>
-              <tr v-for="n in 4" :key="n">
-                <td>泰和科技</td>
-                <td>30.42</td>
-                <td>2019-11-19</td>
+              <tr v-for="item in preList" :key="item.id">
+                <td>{{ item.stock_name }}</td>
+                <td class="right-t">
+                  <p v-if="item.publish_price">
+                    {{ item.publish_price }}
+                  </p>
+                  <p v-else>暂无</p>
+                </td>
+                <td class="right-t">{{ item.time_to_offer }}</td>
                 <td class="right-t">
                   <span>-</span>
                   <input type="number" v-model="value" />
@@ -124,7 +129,12 @@ export default {
             this.newStockCount = res.data
             break
           case 2:
-            this.preList = res.data
+            for (const key in res.data) {
+              if (res.data.hasOwnProperty(key)) {
+                if (!isNaN(Number(key)))
+                this.preList.push(res.data[key])
+              }
+            }
             break  
         }
       } else {
@@ -231,6 +241,8 @@ export default {
     }
     table {
       width: 100%;
+      // table-layout: fixed;
+      // word-wrap: break-word;
       thead {
         font-size: 0.27rem;
         color: #969696;
@@ -240,7 +252,7 @@ export default {
         }
       }
       tbody {
-        font-size: 0.26rem;
+        font-size: 0.2rem;
         text-align: center;
         td {
           padding-bottom: 0.14rem;
