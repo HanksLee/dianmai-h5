@@ -64,7 +64,7 @@
             <th style="text-align: left;">申购数</th>
           </thead>
         </table>
-        <div style="max-height: 1.4rem; overflow: auto;">
+        <div class="table_con">
           <table width="100%" border="0" cellpadding="0" cellspacing="0">
             <tbody>
               <tr v-for="item in preList" :key="item.id">
@@ -268,6 +268,13 @@ export default {
       font-size: 0.29rem;
       margin: -0.02rem 0 0.4rem 0;
       text-align: center;
+    }
+    .table_con {
+      max-height: 1.4rem;
+      overflow: auto;
+    }
+    .table_con::-webkit-scrollbar {
+      width: 0;
     }
     table {
       width: 100%;
