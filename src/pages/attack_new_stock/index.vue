@@ -77,9 +77,14 @@
                 </td>
                 <td class="right-t">{{ item.time_to_offer }}</td>
                 <td class="right-t">
-                  <span @click="changeTest(item, 'sub')">-</span>
-                  <input type="number" v-model="item.countNum" />
-                  <span @click="changeTest(item, 'add')">+</span>
+                  <template v-if="item.publish_price">
+                    <span @click="changeTest(item, 'sub')">-</span>
+                    <input type="number" v-model="item.countNum" />
+                    <span @click="changeTest(item, 'add')">+</span>
+                  </template>
+                  <template v-else>
+                    ----------
+                  </template>
                 </td>
               </tr>
             </tbody>
@@ -148,12 +153,14 @@ export default {
      * input加减
      */
     changeTest (obj, type) {
-      if (type === 'add') {
-        obj.countNum += 1
-      } else if (type === 'sub') {
-        if (obj.countNum > 0) obj.countNum -= 1
+      if (obj.publish_price) {
+        if (type === 'add') {
+          obj.countNum += 1
+        } else if (type === 'sub') {
+          if (obj.countNum > 0) obj.countNum -= 1
+        }
+        this.count(this.preList)
       }
-      this.count(this.preList)
     },
     count (preList) {
       let result = 0
