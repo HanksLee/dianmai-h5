@@ -77,9 +77,9 @@
                 </td>
                 <td class="right-t">{{ item.time_to_offer }}</td>
                 <td class="right-t">
-                  <span>-</span>
-                  <input type="number" v-model="value" />
-                  <span>+</span>
+                  <span @click="changeTest(item, 'sub')">-</span>
+                  <input type="number" v-model="item.countNum" />
+                  <span @click="changeTest(item, 'add')">+</span>
                 </td>
               </tr>
             </tbody>
@@ -131,14 +131,24 @@ export default {
           case 2:
             for (const key in res.data) {
               if (res.data.hasOwnProperty(key)) {
-                if (!isNaN(Number(key)))
-                this.preList.push(res.data[key])
+                if (!isNaN(Number(key))) {
+                  // 增加下自定义属性方便计算，此属性绑定数量的input
+                  res.data[key].countNum = 0
+                  this.preList.push(res.data[key])
+                }
               }
             }
             break  
         }
       } else {
         this.$messageFail(res.msg)
+      }
+    },
+    changeTest (obj, type) {
+      if (type === 'add') {
+        obj.countNum += 1
+      } else if (type === 'sub') {
+        obj.countNum -= 1
       }
     }
   }
