@@ -87,7 +87,7 @@
         </div>
       </div>
       <div class="dia-btm">
-        申购总额: 100
+        申购总额: {{ preCount }}
       </div>
     </van-dialog>
   </div>
@@ -106,9 +106,9 @@ export default {
     return {
       msg: 'test',
       dialogVisible: false,
-      value: 0,
       newStockCount: {},
-      preList: []
+      preList: [],
+      preCount: 0
     }
   },
   created () {
@@ -144,12 +144,25 @@ export default {
         this.$messageFail(res.msg)
       }
     },
+    /**
+     * input加减
+     */
     changeTest (obj, type) {
       if (type === 'add') {
         obj.countNum += 1
       } else if (type === 'sub') {
-        obj.countNum -= 1
+        if (obj.countNum > 0) obj.countNum -= 1
       }
+      this.count(this.preList)
+    },
+    count (preList) {
+      let result = 0
+      for (const item of preList) {
+        if (item.publish_price) {
+          result += item.publish_price * item.countNum
+        }
+      }
+      this.preCount = result.toFixed(2)
     }
   }
 }
