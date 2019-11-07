@@ -289,7 +289,7 @@ export default {
         }
       }
       tbody {
-        font-size: 0.2rem;
+        font-size: 0.25rem;
         text-align: center;
         td {
           padding-bottom: 0.14rem;
