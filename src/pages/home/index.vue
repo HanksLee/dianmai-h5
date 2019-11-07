@@ -254,7 +254,8 @@
           </ul>
         </div>
       </van-tab>
-      <van-tab title="指数." v-if="ft6">
+      <!-- 原为指数. -->
+      <van-tab title="指数" v-if="ft6">
         <ul class="shares-top flex-between">
           <li v-for="(item, index) in marketData" :key="index" @click="indexMarketFn3(item,index)">
             <!--<p :style="aa == '1' ? 'color: rgba(64, 158, 255, 0.56);' : 'color:rgba(140, 147, 157, 0.31)'"></p>-->
