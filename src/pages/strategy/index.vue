@@ -154,7 +154,7 @@
             判断逻辑等同于合约按钮的判断逻辑
            -->
           <dl class="row2 traders-funds">
-            <dt>策略类型</dt>
+            <dt>选择多空</dt>
             <dd>
               <template v-if="margin_status.length === 2">
                 <span :class="{ strategyActive: cmd == 0 }"
@@ -172,8 +172,171 @@
               </template>
             </dd>
           </dl>
-          <!-- 这里是止盈↓ -->
+          <!-- 对应于添加策略类型选项的止盈 -->
           <div v-if="margin_status.length === 2">
+            <!-- 多单止盈 -->
+            <template v-if="cmd == 0">
+              <div v-if="margin_status[0] == '0' || margin_status[1] == '0'">
+                <dl class="row2 operation-fund" v-if="Number(tp_limit) !== 0 && tp_sl_witch == '1'">
+                  <dt>止盈</dt>
+                  <dd class="form-content">
+                    <div class="amount-select">
+                      <van-stepper
+                        v-model="winStopAt"
+                        :min="0"
+                        @minus="minuswinStopAtFn(0)"
+                        @plus="pluswinStopAtFn(0)"
+                      />
+                    </div>
+                  </dd>
+                </dl>
+              </div>
+            </template>
+            <!-- 空单止盈 -->
+            <template v-if="cmd == 1">
+              <div v-if="margin_status[0] == '1' || margin_status[1] == '1'">
+                <dl class="row2 operation-fund" v-if="Number(tp_limit) !== 0 && tp_sl_witch == '1'">
+                  <dt>止盈</dt>
+                  <dd class="form-content">
+                    <div class="amount-select">
+                      <van-stepper
+                        v-model="winStopAt1"
+                        :min="0"
+                        @minus="minuswinStopAtFn(1)"
+                        @plus="pluswinStopAtFn(1)"
+                      />
+                    </div>
+                  </dd>
+                </dl>
+              </div>
+            </template>
+          </div>
+          <div v-else>
+            <!-- 多单止盈 -->
+            <template v-if="cmd == 0">
+              <div v-if="margin_status[0] == '0'">
+                <dl class="row2 operation-fund" v-if="Number(tp_limit) !== 0 && tp_sl_witch == '1'">
+                  <dt>止盈</dt>
+                  <dd class="form-content">
+                    <div class="amount-select">
+                      <van-stepper
+                        v-model="winStopAt"
+                        :min="0"
+                        @minus="minuswinStopAtFn(0)"
+                        @plus="pluswinStopAtFn(0)"
+                      />
+                    </div>
+                  </dd>
+                </dl>
+              </div>
+            </template>
+            <!-- 空单止盈 -->
+            <template v-if="cmd == 1">
+              <div v-if="margin_status[0] == '1'">
+                <dl class="row2 operation-fund" v-if="Number(tp_limit) !== 0 && tp_sl_witch == '1'">
+                  <dt>止盈</dt>
+                  <dd class="form-content">
+                    <div class="amount-select">
+                      <van-stepper
+                        v-model="winStopAt1"
+                        :min="0"
+                        @minus="minuswinStopAtFn(1)"
+                        @plus="pluswinStopAtFn(1)"
+                      />
+                    </div>
+                  </dd>
+                </dl>
+              </div>
+            </template>
+          </div>
+          <!-- 对应于添加策略类型选项的止损 -->
+          <div v-if="margin_status.length === 2 && leverageSelect > 1">
+            <!-- 多单止损 -->
+            <template v-if="cmd == 0">
+              <div v-if="margin_status[0] == '0' || margin_status[1] == '0'">
+                <dl class="row2 operation-fund" v-if="Number(sl_limit) !== 0 && tp_sl_witch == '1'">
+                  <dt>止损</dt>
+                  <dd class="form-content">
+                    <div class="amount-select">
+                      <van-stepper
+                        v-model="loseStopAt"
+                        :min="lowestStop"
+                        :max="Number(stockDetail.now_price)"
+                        @minus="minusloseStopAtFn(0)"
+                        @plus="plusloseStopAtFn(0)"
+                        @change="changeLoseStopAt"
+                      />
+                    </div>
+                  </dd>
+                </dl>
+              </div>
+            </template>
+            <!-- 空单止损 -->
+            <template v-if="cmd == 1">
+              <div v-if="margin_status[0] == '1' || margin_status[1] == '1'">
+                <dl class="row2 operation-fund" v-if="Number(sl_limit) !== 0 && tp_sl_witch == '1'">
+                  <dt>止损</dt>
+                  <dd class="form-content">
+                    <div class="amount-select">
+                      <van-stepper
+                        v-model="loseStopAt1"
+                        :min="Number(stockDetail.now_price)"
+                        :max="lowestStop1"
+                        @minus="minusloseStopAtFn(1)"
+                        @plus="plusloseStopAtFn(1)"
+                        @change="changeLoseStopAt1"
+                      />
+                    </div>
+                  </dd>
+                </dl>
+              </div>
+            </template>
+          </div>
+          <div v-if="margin_status.length === 1 && leverageSelect > 1">
+            <!-- 多单止损 -->
+            <template v-if="cmd == 0">
+              <div v-if="margin_status[0] == '0'">
+                <dl class="row2 operation-fund" v-if="Number(sl_limit) !== 0 && tp_sl_witch == '1'">
+                  <dt>止损</dt>
+                  <dd class="form-content">
+                    <div class="amount-select">
+                      <van-stepper
+                        v-model="loseStopAt"
+                        :min="lowestStop"
+                        :max="Number(stockDetail.now_price)"
+                        @minus="minusloseStopAtFn(0)"
+                        @plus="plusloseStopAtFn(0)"
+                        @change="changeLoseStopAt"
+                      />
+                    </div>
+                  </dd>
+                </dl>
+              </div>
+            </template>
+            <!-- 空单止损 -->
+            <template v-if="cmd == 1">
+              <div v-if="margin_status[0] == '1'">
+                <dl class="row2 operation-fund" v-if="Number(sl_limit) !== 0 && tp_sl_witch == '1'">
+                  <dt>止损</dt>
+                  <dd class="form-content">
+                    <div class="amount-select">
+                      <van-stepper
+                        v-model="loseStopAt1"
+                        :min="Number(stockDetail.now_price)"
+                        :max="lowestStop1"
+                        @minus="minusloseStopAtFn(1)"
+                        @plus="plusloseStopAtFn(1)"
+                        @change="changeLoseStopAt1"
+                      />
+                    </div>
+                  </dd>
+                </dl>
+              </div>
+            </template>
+          </div>
+          <!-- 添加策略类型前的代码↓ -->
+          <!-- 这里是止盈↓ -->
+          <!-- <div v-if="margin_status.length === 2">
             <div v-if="margin_status[0] == '0' || margin_status[1] == '0'">
               <dl class="row2 operation-fund" v-if="Number(tp_limit) !== 0 && tp_sl_witch == '1'">
                 <dt>多头止盈</dt>
@@ -236,11 +399,10 @@
                 </dd>
               </dl>
             </div>
-          </div>
+          </div> -->
           <!-- 这里是止盈↑ -->
-
           <!-- 这里是止损↓ -->
-          <div v-if="margin_status.length === 2 && leverageSelect > 1">
+          <!-- <div v-if="margin_status.length === 2 && leverageSelect > 1">
             <div v-if="margin_status[0] == '0' || margin_status[1] == '0'">
               <dl class="row2 operation-fund" v-if="Number(sl_limit) !== 0 && tp_sl_witch == '1'">
                 <dt>多头止损</dt>
@@ -311,7 +473,7 @@
                 </dd>
               </dl>
             </div>
-          </div>
+          </div> -->
           <!-- 这里是止损↑ -->
 
           <dl class="row2">
