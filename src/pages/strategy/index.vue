@@ -149,6 +149,29 @@
               >￥-{{Math.floor(item*operationFund)}}</span>
             </dd>
           </dl>
+          <!-- 
+            新增的策略类型，用于控制是多头还是空头。
+            判断逻辑等同于合约按钮的判断逻辑
+           -->
+          <dl class="row2 traders-funds">
+            <dt>策略类型</dt>
+            <dd>
+              <template v-if="margin_status.length === 2">
+                <span :class="{ strategyActive: cmd == 0 }"
+                  @click="cmd = 0">多单</span>
+                <span :class="{ strategyActive: cmd == 1 }"
+                  @click="cmd = 1">空单</span>
+              </template>
+              <template v-else>
+                <span :class="{ strategyActive: cmd == 0 }"
+                  v-if="stockDetail.margin_status == '0'"
+                  @click="cmd = 0">多单</span>
+                <span :class="{ strategyActive: cmd == 1 }"
+                  v-if="stockDetail.margin_status == '1'"
+                  @click="cmd = 1">空单</span>
+              </template>
+            </dd>
+          </dl>
           <!-- 这里是止盈↓ -->
           <div v-if="margin_status.length === 2">
             <div v-if="margin_status[0] == '0' || margin_status[1] == '0'">
@@ -352,7 +375,16 @@
             <span v-else>* 总计=操作资金+服务费+递延费*天数</span>
           </p>
         </div>
+        <!-- 对应修改为策略类型的确认按钮 -->
         <div v-if="isItTradable">
+          <div class="row-box2">
+            <div class="but-box1" @click="show = true" >
+              确认
+            </div>
+          </div>
+        </div>
+        <!-- 合约按钮 -->
+        <!-- <div v-if="isItTradable">
           <div class="row-box2" v-if="margin_status.length === 2">
             <div
               class="but-box1"
@@ -393,7 +425,7 @@
               v-if="stockDetail.margin_status == '1' && url !== 'dingmaohongsheng.com'"
             >{{text_con.text2}}</div>
           </div>
-        </div>
+        </div> -->
       </van-tab>
       <van-tab title="持仓">
         <Position></Position>
@@ -1659,6 +1691,11 @@ export default {
       margin-right: 0.2rem;
       padding: 0 3px;
       &.active {
+        background: #ffe131;
+        border: 1px solid #ffe131;
+        color: #000;
+      }
+      &.strategyActive {
         background: #ffe131;
         border: 1px solid #ffe131;
         color: #000;
