@@ -149,6 +149,7 @@
               >￥-{{Math.floor(item*operationFund)}}</span>
             </dd>
           </dl>
+          <!-- 这里是止盈↓ -->
           <div v-if="margin_status.length === 2">
             <div v-if="margin_status[0] == '0' || margin_status[1] == '0'">
               <dl class="row2 operation-fund" v-if="Number(tp_limit) !== 0 && tp_sl_witch == '1'">
@@ -213,7 +214,9 @@
               </dl>
             </div>
           </div>
+          <!-- 这里是止盈↑ -->
 
+          <!-- 这里是止损↓ -->
           <div v-if="margin_status.length === 2 && leverageSelect > 1">
             <div v-if="margin_status[0] == '0' || margin_status[1] == '0'">
               <dl class="row2 operation-fund" v-if="Number(sl_limit) !== 0 && tp_sl_witch == '1'">
@@ -286,6 +289,7 @@
               </dl>
             </div>
           </div>
+          <!-- 这里是止损↑ -->
 
           <dl class="row2">
             <dt>服务费</dt>
