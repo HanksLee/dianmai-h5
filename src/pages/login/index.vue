@@ -1,5 +1,14 @@
 <template>
-  <div class="login" :class="{aaclplus:url == 'aaclplus.com',zggjcenter:url == 'zggjcenter.com',ruthmarkets:url =='ruthinks.com',zxcnmarkets:url == 'zxcnmarkets.com',gplrds:url == 'gplrds.com',dingmaohongsheng:url == 'dingmaohongsheng.com',ftstrategy:url=='ftstrategy.net',liangrongFund:url=='liangrong-fund.com',boloniasia:url== 'boloniasia.com',raytekasia:url== 'raytekasia.com',acarpsgroup:url=='acarpsgroup.com',huachihk:url=='huachihk.com',huifengstocks:url=='huifengstocks.com',jungdamarkets:url=='jundatl.com'}">
+  <div class="login" :class="{
+    aaclplus: url == 'aaclplus.com', zggjcenter: url == 'zggjcenter.com',
+    ruthmarkets: url =='ruthinks.com', zxcnmarkets: url == 'zxcnmarkets.com',
+    gplrds: url == 'gplrds.com', dingmaohongsheng: url == 'dingmaohongsheng.com',
+    ftstrategy: url=='ftstrategy.net', liangrongFund: url=='liangrong-fund.com',
+    boloniasia: url== 'boloniasia.com', raytekasia: url== 'raytekasia.com',
+    acarpsgroup: url=='acarpsgroup.com', huachihk: url=='huachihk.com',
+    huifengstocks: url=='huifengstocks.com', jungdamarkets: url=='jundatl.com',
+    huataistock: url == 'huataistock.com'
+  }">
     <div class="login-box">
       <!-- <a class="fh" href="javascript:history.go(-1)">
         <img src="static/img/fh.png" alt>
@@ -433,6 +442,9 @@ html,body,#app{
 }
 .login.liangrongFund{
   background-image: url("/static/loginBg/liangrong-fund.jpg");
+}
+.login.huataistock {
+  background-image: url("/static/loginBg/huataistock.jpg")
 }
 
 .login.boloniasia{
