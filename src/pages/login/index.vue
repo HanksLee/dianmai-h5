@@ -45,8 +45,8 @@
           </li>
           <li>
             <div class="register-link">
-              <router-link to="/register">新用户注册
-                <img src="static/img/x.png" alt>
+              <router-link to="/register">新用户注册 >
+                <!-- <img src="static/img/x.png" alt> -->
               </router-link>
             </div>
             <div class="forget-password">
@@ -112,8 +112,9 @@ export default {
       domain.length
     );
     this.url = firstDomain;
-    if(this.url =='huachihk.com'||this.url=='huifengstocks.com'||this.url=='jungdamarkets.com'){
-       this.colorValue='#000'
+    if(this.url =='huachihk.com'||this.url=='huifengstocks.com'||this.url=='jungdamarkets.com'
+      || this.url == 'huataistock'){
+       this.colorValue='#909399'
     }else{
        this.colorValue=''
     }
@@ -296,9 +297,15 @@ html,body,#app{
       }
       .register-link {
         float: left;
+        a {
+          color: #909399;
+        }
       }
       .forget-password {
         float: right;
+        a {
+          color: #909399;
+        }
       }
     }
     .but-li {
