@@ -113,7 +113,7 @@ export default {
     );
     this.url = firstDomain;
     if(this.url =='huachihk.com'||this.url=='huifengstocks.com'||this.url=='jungdamarkets.com'
-      || this.url == 'huataistock'){
+      || this.url == 'huataistock.com'){
        this.colorValue='#909399'
     }else{
        this.colorValue=''
@@ -234,7 +234,7 @@ html,body,#app{
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  height: 100vh;
+  min-height: 720px;
   position: relative;
   color: #fff;
   .login-box {
