@@ -15,7 +15,7 @@
             <div class="textcont" v-html="content"></div>
           </van-collapse>
         </van-collapse-item>
-        <van-collapse-item class="cjwt" title="常见问题" name="3">
+        <!-- <van-collapse-item class="cjwt" title="常见问题" name="3">
           <van-collapse v-model="activeNames3" accordion class="children">
             <van-collapse-item title="Q：什么是点买人，什么是投资人？" name="1">
               <p>
@@ -108,7 +108,8 @@
               <p>非停牌计算 ：（买入价格 * 交易数量 * 递延费用万分比 / 10000 ）*递延天数。</p>
               </div>
             </van-collapse-item>
-            <!-- <van-collapse-item title="Q：买入费用、卖出费用的计算" name="14">
+
+            <van-collapse-item title="Q：买入费用、卖出费用的计算" name="14">
               <div v-if="domainFn()">
                 <p>买入手续费：（买入价格*股数*0.0004）</p>
                 <p>卖出手续费：（卖出手续费*股数*0.0004）</p>
@@ -132,7 +133,8 @@
               <p>券商代扣=（过户费+交易规费+印花税）*卖出价格*卖出数量。</p>
               <p><span>卖出费用</span>=手续费+券商代扣。</p>
               </div>
-            </van-collapse-item> -->
+            </van-collapse-item>
+
             <van-collapse-item title="Q：什么是买入佣金百分比、卖出佣金百分比？" name="15" v-if="!domainFn()">
               <p>
                 股票佣金，是投资者在委托买卖股票成交后按成交金额一定比例支付的费用。根据国家相关政策规定：A股、B股、证券投资基金的交易佣金实行最高上限向下浮动制度，证券公司向客户收取的佣金(包括代收的证券交易监管费和证券交易所手续费等)不得高于证券交易金额的3‰。</p>
@@ -147,7 +149,7 @@
               <p>可能因为{{textFn2()}}订单爆仓导致系统强制{{textFn()}}。</p>
             </van-collapse-item>
           </van-collapse>
-        </van-collapse-item>
+        </van-collapse-item> -->
       </van-collapse>
     </div>
     <Loading :loading="loadings"></Loading>
