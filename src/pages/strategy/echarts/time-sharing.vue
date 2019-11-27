@@ -358,10 +358,11 @@ export default {
     },
     //获取分时
     getfiash(){
-      commonRequest('fiash',{
+      commonRequest('newFiash',{
         keyword: this.stock_code,
         stock_type: this.query.stock_type,
-		    market_id: this.stockDetail.market_id
+        market_id: this.stockDetail.market_id,
+        market: this.stockDetail.market
       }).then(res =>{
         if(res.code == '200'){
           this.fiashData = res.data.data

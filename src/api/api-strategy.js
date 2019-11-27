@@ -14,6 +14,7 @@ const requestName = {
   userMoney: '/v1_home/user/user-money',
   updatetpsl: '/v1_home/orderpolicy/updatetpsl',//调整止盈止损
   fiash: '/v1_home/quoteday/fiash',//分时图
+  newFiash: '/v1_home/quoteday/newfiash', // 新的分时
   kline: '/v1_home/quoteday/kline',//k线图
   alertcount:'/v1_home/user/alertcount',//爆仓预警消息条数
   alertmsg:'/v1_home/user/alertmsg',//爆仓预警消息
